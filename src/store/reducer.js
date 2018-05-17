@@ -1,5 +1,6 @@
 const initialState = {
   counter: 0,
+  results: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -24,6 +25,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         counter: state.counter - 5,
+      }
+    case 'STORE_RESULT':
+      return {
+        ...state,
+        results: [...state.results, { id: new Date(), value: state.counter }],
       }
   }
 
