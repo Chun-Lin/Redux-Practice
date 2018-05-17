@@ -1,3 +1,5 @@
+import shortid from 'shortid'
+
 const initialState = {
   counter: 0,
   results: [],
@@ -29,7 +31,10 @@ const reducer = (state = initialState, action) => {
     case 'STORE_RESULT':
       return {
         ...state,
-        results: [...state.results, { id: new Date(), value: state.counter }],
+        results: [
+          ...state.results,
+          { id: shortid.generate(), value: state.counter },
+        ],
       }
   }
 
