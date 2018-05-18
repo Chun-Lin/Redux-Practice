@@ -33,8 +33,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         results: [
           ...state.results,
-          { id: shortid.generate(), value: state.counter },
+          { id: shortid.generate(), value: action.result },
         ],
+      }
+    case 'DELETE_RESULT':
+      const updatedResults = state.results.filter(
+        result => result.id !== action.resultID,
+      )
+      return {
+        ...state,
+        results: updatedResults,
       }
   }
 
