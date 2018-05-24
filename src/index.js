@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import counterReducer from './store/reducers/counter'
 import resultReducer from './store/reducers/result'
@@ -14,7 +14,25 @@ const rootReducer = combineReducers({
   results: resultReducer,
 })
 
-const store = createStore(rootReducer)
+// const logger = store => {
+//   return next => {
+//     return action => {
+//       console.log('[Middleware] Dispatching', action)
+//       const result = next(action)
+//       console.log('[Middleware] next state', store.getState())
+//       return result
+//     }
+//   }
+// }
+
+const logger = store => next => action => {
+  console.log(next)
+  console.log('[Middleware] Dispatching', action)
+  next(action)
+  console.log('[Middleware] next state', store.getState())
+}
+
+const store = createStore(rootReducer, applyMiddleware(logger))
 
 ReactDOM.render(
   <Provider store={store}>
