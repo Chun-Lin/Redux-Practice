@@ -9,26 +9,32 @@ export const increment = () => ({
   type: INCREMENT,
 })
 
-export const decrement = () =>({
-  type: DECREMENT
+export const decrement = () => ({
+  type: DECREMENT,
 })
 
-export const add = (value) =>({
+export const add = value => ({
   type: ADD,
-  value: value
+  value: value,
 })
 
-export const subtract = (value) =>({
+export const subtract = value => ({
   type: SUBSTRACT,
-  value: value
+  value: value,
 })
 
-export const storeResult = (result)=>({
+export const saveResult = result => ({
   type: STORE_RESULT,
-  result: result
+  result: result,
 })
 
-export const deleteResult = (id)=>({
+export const storeResult = result => dispatch => {
+  setTimeout(() => {
+    dispatch(saveResult(result))
+  }, 2000)
+}
+
+export const deleteResult = id => ({
   type: DELETE_RESULT,
-  resultID: id
+  resultID: id,
 })
