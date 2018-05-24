@@ -1,5 +1,5 @@
 import shortid from 'shortid'
-import * as actionTypes from '../../actions/actions'
+import * as actionTypes from '../actions/actions'
 
 const initialState = {
   results: []
